@@ -101,7 +101,7 @@ void SerialHandle::set_parity(bool p_parity)
 void SerialHandle::set_hardwareFlowControl(bool p_control)
 {
 	//enable hardware flow control
-	if(p_control)
+	if(!p_control)
 	{
 		serial_port.SetFlowControl( SerialStreamBuf::FLOW_CONTROL_NONE ) ;
 		if ( ! serial_port.good() ) 
