@@ -9,8 +9,9 @@ using namespace LibSerial ;
 class SerialHandle
 {
 	public:
-		SerialHandle(const char* const p_port_name);
+		SerialHandle();
 		~SerialHandle();
+		void set_port(const char* const p_port_name);
 		void set_baudRate(int p_baud_rate);
 		void set_dataBits(int p_data_bits);
 		void set_stopBit(int p_stop_bit);

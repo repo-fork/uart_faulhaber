@@ -6,7 +6,15 @@
 using namespace LibSerial ;    
 
 //open the serial port
-SerialHandle::SerialHandle(const char* const p_port_name)
+SerialHandle::SerialHandle()
+{
+}
+
+SerialHandle::~SerialHandle()
+{
+}
+
+void SerialHandle::set_port(const char* const p_port_name)
 {
 	const char* const SERIAL_PORT_DEVICE = p_port_name;
     serial_port.Open( SERIAL_PORT_DEVICE ) ;
@@ -17,10 +25,6 @@ SerialHandle::SerialHandle(const char* const p_port_name)
                   << std::endl ;
         exit(1) ;
     }
-}
-
-SerialHandle::~SerialHandle()
-{
 }
 
 //set baud rate
