@@ -12,6 +12,7 @@ SerialHandle::SerialHandle()
 
 SerialHandle::~SerialHandle()
 {
+    serial_port.Close();
 }
 
 void SerialHandle::set_port(const char* const p_port_name)
