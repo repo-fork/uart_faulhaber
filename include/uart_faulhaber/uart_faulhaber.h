@@ -2,6 +2,7 @@
 #define UART_FAULHABER 
 
 #include <sstream>
+#include <string>
 #include <SerialStream.h>
 
 using namespace LibSerial ;    
@@ -18,7 +19,7 @@ class SerialHandle
 		void set_parity(bool p_parity);
 		void set_hardwareFlowControl(bool p_control);
 		void writeData(std::string p_data);
-		void readData();
+		std::string readData();
 		
 	private:
     	SerialStream serial_port;

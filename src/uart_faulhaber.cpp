@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <ros/ros.h>
 #include <uart_faulhaber/uart_faulhaber.h>
 
@@ -128,12 +129,13 @@ void SerialHandle::writeData(std::string p_data)
 {
 //	std::cerr << "Dumping file to serial port." << std::endl ;
 //	ROS_INFO("%s\n", p_data.c_str());
+	//std::cout << p_data << std::endl;
 	serial_port << p_data << std::endl ;
 //    std::cerr << std::endl ;
 //    std::cerr << "Done." << std::endl ;
 }
 
-void SerialHandle::readData()
+std::string SerialHandle::readData()
 {
 #if 0
     while( serial_port.rdbuf()->in_avail() == 0 ) 
@@ -144,13 +146,23 @@ void SerialHandle::readData()
     //
     // Keep reading data from serial port and print it to the screen.
     //
-    while( serial_port.rdbuf()->in_avail() > 0  ) 
+    //while( serial_port.rdbuf()->in_avail() > 0  ) 
+    char next_byte;
+	std::stringstream ss_enc;
+	ss_enc.str("");
+    while(1) 
     {
-        char next_byte;
         serial_port.get(next_byte);
-        std::cerr << next_byte;
+        //std::cerr << next_byte;
+		if(next_byte == '\r')
+			break;
+		else
+		    ss_enc << next_byte;
         //usleep(100) ;
     } 
-    std::cerr << std::endl ;
+
+	return ss_enc.str();
+	//std::cout << ss_enc.str() << std::endl;
+    //std::cerr << std::endl ;
 
 }
